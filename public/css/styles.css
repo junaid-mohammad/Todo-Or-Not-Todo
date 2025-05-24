@@ -1,15 +1,37 @@
+/* =========================================
+   Global Styles and Page Setup
+   ========================================= */
+
+/* Full height background with two-color gradient */
 html {
   background-color: #E4E9FD;
   background-image: -webkit-linear-gradient(65deg, #A683E3 50%, #E4E9FD 50%);
-  min-height: 1000px;
   font-family: 'helvetica neue';
 }
+
+/* Make the page stretch to full height to support footer placement */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
+
+/* Ensures all main page content fills the space above the footer */
+.wrapper {
+  flex: 1;
+}
+
+/* =========================================
+   Header Section
+   ========================================= */
 
 h1 {
   color: #fff;
   padding: 10px;
 }
 
+/* Container box for all page sections */
 .box {
   max-width: 400px;
   margin: 50px auto;
@@ -18,10 +40,15 @@ h1 {
   box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
 }
 
+/* Title header styling */
 #heading {
   background-color: #A683E3;
   text-align: center;
 }
+
+/* =========================================
+   To-Do Item List Styling
+   ========================================= */
 
 .item {
   min-height: 70px;
@@ -34,40 +61,49 @@ h1 {
   border-bottom: 0;
 }
 
-input:checked+p {
+/* Checked item strikethrough */
+input:checked + label {
   text-decoration: line-through;
   text-decoration-color: #A683E3;
 }
 
+/* Checkbox spacing */
 input[type="checkbox"] {
   margin: 20px;
 }
 
-p {
+/* Task label styling */
+label {
   margin: 0;
   padding: 20px;
   font-size: 20px;
   font-weight: 200;
   color: #00204a;
+  flex-grow: 1;
 }
+
+/* =========================================
+   Form Styling
+   ========================================= */
 
 form {
   text-align: center;
   margin-left: 20px;
 }
 
+/* Add button styling */
 button {
   min-height: 50px;
   width: 50px;
   border-radius: 50%;
-  border-color: transparent;
+  border: none;
   background-color: #A683E3;
   color: #fff;
   font-size: 30px;
   padding-bottom: 6px;
-  border-width: 0;
 }
 
+/* Input field styling */
 input[type="text"] {
   text-align: center;
   height: 60px;
@@ -89,8 +125,102 @@ input[type="text"]:focus {
   opacity: 1;
 }
 
+/* =========================================
+   Footer Styling
+   ========================================= */
+
 footer {
-  color: white;
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(0, 0, 0, 0.7);
+  background: none;         
   text-align: center;
+  padding: 20px 0;
+  font-size: 0.95rem;
+}
+
+footer nav {
+  margin-top: 5px;
+}
+
+footer nav a {
+  margin: 0 12px;
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.6);
+  transition: color 0.3s ease;
+}
+
+footer nav a:hover {
+  color: #000000;
+}
+
+/* =========================================
+   📱 Mobile Responsiveness (≤ 480px)
+   ========================================= */
+@media screen and (max-width: 480px) {
+
+  /* Ensure body doesn't touch edges on small screens */
+  body {
+    padding: 10px;
+  }
+
+  /* Wrapper ensures all content respects margin */
+  .wrapper {
+    padding: 10px 10px 0 10px;
+  }
+
+  /* Reduce overall margin and spacing for smaller viewports */
+  .box {
+    margin: 30px auto;
+    max-width: 100%;
+  }
+
+  /* Scale headings and form inputs slightly for compact screens */
+  h1 {
+    font-size: 1.5rem;
+    padding: 8px;
+  }
+
+  label {
+    font-size: 18px;
+    padding: 16px;
+  }
+
+  input[type="text"] {
+    width: 85%;
+    font-size: 18px;
+    padding: 12px 0;
+  }
+
+  button {
+    width: 45px;
+    height: 45px;
+    font-size: 24px;
+  }
+
+  .item {
+    min-height: 60px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  input[type="checkbox"] {
+    margin: 12px;
+  }
+
+  /* Footer adjustments for tighter mobile layout */
+  footer {
+    font-size: 0.85rem;
+    padding: 15px 10px;
+  }
+
+  footer nav {
+    margin-top: 4px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  footer nav a {
+    margin: 0 6px;
+  }
 }

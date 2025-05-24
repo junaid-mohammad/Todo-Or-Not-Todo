@@ -1,26 +1,31 @@
+<!--
+  list.ejs
+  ---------------------
+  Dynamic to-do list page for main or work lists.
+  Receives:
+    - listTitle: Title to display
+    - newItems: Array of current to-do items
+-->
 <%- include("header") -%>
 
-<div class="box" id="heading">
-  <h1> <%= listTitle %> </h1>
-</div>
-
-<div class="box">
-
-  <% for (let i=0; i<newItems.length; i++) { %>
-
-  <div class="item">
-    <input type="checkbox">
-    <p> <%= newItems[i] %> </p>
+<div class="wrapper">
+  <div class="box" id="heading">
+    <h1><%= listTitle %></h1>
   </div>
 
-  <% } %>
+  <div class="box">
+    <% for (let i = 0; i < newItems.length; i++) { %>
+      <div class="item">
+        <input type="checkbox" id="item-<%= i %>">
+        <label for="item-<%= i %>"><%= newItems[i] %></label>
+      </div>
+    <% } %>
 
-  <form class="item" action="/" method="post">
-    <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
-    <button type="submit" name="list" value=<%= listTitle %>>+</button>
-  </form>
-
+    <form class="item" action="/" method="post">
+      <input type="text" name="newItem" placeholder="New Item" autocomplete="off" required />
+      <button type="submit" name="list" value="<%= listTitle %>">+</button>
+    </form>
+  </div>
 </div>
-
 
 <%- include("footer") -%>

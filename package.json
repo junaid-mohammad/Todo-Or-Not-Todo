@@ -1,16 +1,43 @@
 {
-  "name": "todolist-v1",
+  "name": "todolist",
   "version": "1.0.0",
-  "description": "My First TodoList.",
+  "description": "A minimalist to-do list app built with Node.js, Express, and EJS. Designed to explore server-side rendering and form handling. Hosted on Render with a clean, responsive layout and modular structure.",
   "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "engines": {
+    "node": ">= 14.0.0",
+    "npm": ">= 6.0.0"
   },
-  "author": "",
-  "license": "ISC",
+  "homepage": "https://todolist-junaid.onrender.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/junaid-mohammad/To-do-List-v1.git"
+  },
+  "bugs": "",
+  "keywords": [
+    "To-Do App",
+    "Node.js",
+    "Express",
+    "EJS",
+    "Render Hosting",
+    "Task Tracker",
+    "Beginner Project",
+    "Responsive Design",
+    "Server-Side Rendering"
+  ],
+  "author": "Junaid Arif",
+  "contributors": [],
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": ""
+  },
   "dependencies": {
-    "body-parser": "^1.20.1",
-    "ejs": "^3.1.8",
-    "express": "^4.18.2"
-  }
+    "body-parser": "^1.20.3",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  },
+  "license": "ISC"
 }
