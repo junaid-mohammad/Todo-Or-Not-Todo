@@ -1,5 +1,5 @@
 // -----------------------------------------------------
-// Server Entry Point - Todo or Not Todo 📝
+// Server Entry Point - Todo Or Not Todo 📝
 // -----------------------------------------------------
 // Bootstraps the Express server, sets middleware,
 // connects to PostgreSQL, and mounts the todo routes.
