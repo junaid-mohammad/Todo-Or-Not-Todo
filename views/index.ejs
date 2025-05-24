@@ -1,45 +1,76 @@
+<!-- 
+  index.ejs
+  -------------------------------------
+  Main task list view.
+  Dynamically renders the list title and all to-do items.
+-->
+
 <%- include('partials/header.ejs'); -%>
 
-  <div class="box" id="heading">
-    <h1>
-      <%= listTitle %>
-    </h1>
-  </div>
-  <div class="box">
-    <% for(let item of listItems){%>
-      <div class="item">
-        <form action="/delete" method="post">
-          <input type="checkbox" onchange="this.form.submit()" name="deleteItemId" value="<%= item.id %>">
-        </form>
+<!-- Page Title Block -->
+<div class="box" id="heading">
+  <h1><%= listTitle %></h1>
+</div>
 
-        <p id="title<%=item.id%>">
-          <%= item.title %>
-        </p>
+<!-- To-Do List Block -->
+<div class="box">
+  <% for (let item of listItems) { %>
+    <div class="item">
+      
+      <!-- Delete item via checkbox -->
+      <form action="/delete" method="post">
+        <input type="checkbox" onchange="this.form.submit()" name="deleteItemId" value="<%= item.id %>" />
+      </form>
 
-        <form class="edit" action="/edit" method="post">
-          <input type="hidden" name="updatedItemId" value="<%= item.id %>">
-          <input id="input<%=item.id%>" type="text" name="updatedItemTitle" value="<%= item.title %>" autocomplete="off"
-            autofocus="true" hidden="true" />
-          <button id="done<%=item.id%>" class="edit" type="submit" hidden><img class="icon"
-              src="/assets/icons/check-solid.svg" alt="tick image"></button>
-        </form>
-        <button id="edit<%=item.id%>" class="edit" onclick="handler('<%=item.id%>')"><img class="icon"
-            src="/assets/icons/pencil-solid.svg" alt="pencil image"></button>
-      </div>
-      <% } %>
+      <!-- Static item text -->
+      <p id="title<%= item.id %>"><%= item.title %></p>
 
-        <form class="item" action="/add" method="post">
-          <input type="text" name="newItem" placeholder="New Item" autocomplete="off" autofocus="true" />
-          <button class="add" type="submit" name="list" value=<%=listTitle %> >+</button>
-        </form>
-  </div>
+      <!-- Editable input for item update -->
+      <form class="edit" action="/edit" method="post">
+        <input type="hidden" name="updatedItemId" value="<%= item.id %>" />
+        <input 
+          id="input<%= item.id %>" 
+          type="text" 
+          name="updatedItemTitle" 
+          value="<%= item.title %>" 
+          autocomplete="off" 
+          autofocus="true" 
+          hidden 
+        />
+        <button id="done<%= item.id %>" class="edit" type="submit" hidden>
+          <img class="icon" src="/assets/icons/check-solid.svg" alt="check icon" />
+        </button>
+      </form>
 
-  <script>
-    function handler(id) {
-      document.getElementById("title" + id).setAttribute("hidden", true)
-      document.getElementById("edit" + id).setAttribute("hidden", true)
-      document.getElementById("done" + id).removeAttribute("hidden")
-      document.getElementById("input" + id).removeAttribute("hidden")
-    }
-  </script>
-  <%- include('partials/footer.ejs'); -%>
+      <!-- Edit button to toggle editable input -->
+      <button id="edit<%= item.id %>" class="edit" onclick="handler('<%= item.id %>')">
+        <img class="icon" src="/assets/icons/pencil-solid.svg" alt="edit icon" />
+      </button>
+    </div>
+  <% } %>
+
+  <!-- Add New Item -->
+  <form class="item" action="/add" method="post">
+    <input 
+      type="text" 
+      name="newItem" 
+      placeholder="New Item" 
+      autocomplete="off" 
+      autofocus 
+      required
+    />
+    <button class="add" type="submit" name="list" value="<%= listTitle %>">+</button>
+  </form>
+</div>
+
+<!-- Script to toggle editable mode -->
+<script>
+  function handler(id) {
+    document.getElementById("title" + id).setAttribute("hidden", true);
+    document.getElementById("edit" + id).setAttribute("hidden", true);
+    document.getElementById("done" + id).removeAttribute("hidden");
+    document.getElementById("input" + id).removeAttribute("hidden");
+  }
+</script>
+
+<%- include('partials/footer.ejs'); -%>

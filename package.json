@@ -1,21 +1,46 @@
 {
-  "name": "5-capstone---todo-list",
+  "name": "todo-or-not-todo",
   "version": "1.0.0",
-  "description": "",
+  "description": "A full-stack to-do list app built with Node.js, Express, PostgreSQL, and EJS. Hosted on Azure with persistent data, mobile responsiveness, and dynamic task editing.",
   "main": "index.js",
   "type": "module",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+  "engines": {
+    "node": ">= 14.0.0",
+    "npm": ">= 6.0.0"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "homepage": "https://your-app-name.azurewebsites.net/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/junaid-mohammad/Todo-or-Not-Todo.git"
+  },
+  "bugs": "",
+  "keywords": [
+    "To-Do App",
+    "Express",
+    "PostgreSQL",
+    "EJS",
+    "Azure App Service",
+    "Node.js",
+    "Task Manager",
+    "Editable List",
+    "Full Stack"
+  ],
+  "author": "Junaid Arif",
+  "contributors": [],
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": ""
+  },
   "dependencies": {
     "body-parser": "^1.20.3",
     "dotenv": "^16.5.0",
     "ejs": "^3.1.10",
     "express": "^4.21.2",
     "pg": "^8.16.0"
-  }
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  },
+  "license": "ISC"
 }

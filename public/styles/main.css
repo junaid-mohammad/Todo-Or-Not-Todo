@@ -1,39 +1,65 @@
+/* =========================================
+   🌐 Global Layout & Background
+   ========================================= */
+
 html {
   background-color: #e4e9fd;
   background-image: -webkit-linear-gradient(65deg, #a683e3 50%, #e4e9fd 50%);
-  min-height: 1000px;
   font-family: "helvetica neue";
 }
+
 body {
   display: flex;
   flex-direction: column;
   justify-content: stretch;
-  min-height: 95vh;
+  min-height: 100vh;
+  margin: 0;
 }
+
+/* =========================================
+   🧱 Page Structure
+   ========================================= */
+
+/* Flex wrapper that grows to fill viewport */
+.wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Main content expands to push footer down */
 main {
+  flex: 1;
   text-align: center;
-  flex: 1 0 auto;
 }
+
+/* =========================================
+   🏷️ Heading & Boxes
+   ========================================= */
+
 h1 {
   color: #fff;
   padding: 10px;
 }
 
+/* General box styling */
 .box {
-  max-width: 400px;
+  max-width: 420px;
   margin: 50px auto;
   background: white;
   border-radius: 5px;
   box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
 }
 
+/* Header-specific box */
 #heading {
   background-color: #a683e3;
   text-align: center;
 }
-form.edit {
-  display: flex;
-}
+
+/* =========================================
+   ✅ To-Do List Items
+   ========================================= */
 
 .item {
   min-height: 70px;
@@ -43,14 +69,20 @@ form.edit {
 }
 
 .item:last-child {
-  border-bottom: 0;
+  border-bottom: 10px solid transparent;
 }
 
+.item p {
+  text-align: justify;
+}
+
+/* Checkbox spacing */
 input[type="checkbox"] {
   margin: 20px;
   margin-left: 0;
 }
 
+/* Task label */
 p {
   margin: 0;
   padding: 20px 0;
@@ -58,37 +90,50 @@ p {
   color: #00204a;
 }
 
+/* Edit form is inline with text */
+form.edit {
+  display: flex;
+}
+
+/* General form spacing */
 form {
   text-align: center;
   margin-left: 20px;
 }
 
+/* =========================================
+   ➕ Add & ✏️ Edit Buttons
+   ========================================= */
+
 button.add {
   min-height: 50px;
   width: 50px;
   border-radius: 50%;
-  border-color: transparent;
+  border: none;
   background-color: #a683e3;
   color: #fff;
   font-size: 30px;
-  border-width: 0;
 }
 
 button.edit {
-  margin-left: 0px;
+  margin-left: 0;
   margin-right: 20px;
   border: none;
   background: none;
 }
 
+/* Icon styling */
 .icon {
   height: 20px;
 }
 
+/* =========================================
+   🔤 Input Fields
+   ========================================= */
+
 input[type="text"] {
   text-align: left;
   height: 60px;
-  top: 10px;
   border: none;
   background: transparent;
   font-size: 20px;
@@ -101,13 +146,125 @@ input[type="text"]:focus {
   box-shadow: inset 0 -3px 0 0 #a683e3;
 }
 
+/* Placeholder text color */
 ::placeholder {
   color: lightgray;
   opacity: 1;
 }
 
+/* =========================================
+   ⬇️ Footer Styling (Blended, Soft Contrast)
+   ========================================= */
+
 footer {
   flex: 0 0 auto;
-  color: white;
+  background: none;
+  color: rgba(0, 0, 0, 0.6);
   text-align: center;
+  padding: 20px 0;
+  font-size: 0.95rem;
+}
+
+footer p {
+  font-size: 1rem;
+}
+
+footer nav {
+  margin-top: 6px;
+}
+
+footer nav a {
+  margin: 0 12px;
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.55);
+  transition: color 0.3s ease;
+}
+
+footer nav a:hover {
+  color: #000;
+}
+
+/* =========================================
+   📱 Mobile Responsiveness (≤ 480px)
+   ========================================= */
+@media screen and (max-width: 480px) {
+
+  /* Add breathing space on all sides */
+  body {
+    padding: 10px;
+  }
+
+  /* Ensure wrapper respects padding */
+  .wrapper {
+    padding: 10px 10px 0 10px;
+  }
+
+  /* Reduce card margins for narrower width */
+  .box {
+    margin: 30px auto;
+    max-width: 100%;
+  }
+
+  /* Shrink header font and spacing */
+  h1 {
+    font-size: 1.5rem;
+    padding: 8px;
+  }
+
+  /* Reduce padding on task text */
+  p {
+    padding: 14px 0;
+    font-size: 18px;
+  }
+
+  /* Shrink form text field */
+  input[type="text"] {
+    width: 85%;
+    font-size: 18px;
+    padding: 12px 0;
+  }
+
+  /* Shrink checkbox area */
+  input[type="checkbox"] {
+    margin: 12px;
+  }
+
+  /* Smaller button sizes for narrow screens */
+  button.add {
+    width: 45px;
+    height: 45px;
+    font-size: 24px;
+  }
+
+  /* Adjust item container height and spacing */
+  .item {
+    min-height: 60px;
+    padding: 0 10px;
+  }
+
+  .item p {
+    text-align: start;
+  }
+
+  /* Shrink icon sizes for edit buttons */
+  .icon {
+    height: 16px;
+  }
+
+  /* Footer tweaks */
+  footer {
+    padding: 15px 10px;
+  }
+
+  footer nav {
+    margin-top: 4px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  footer nav a {
+    margin: 0 6px;
+  }
 }

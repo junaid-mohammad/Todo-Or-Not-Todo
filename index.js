@@ -1,85 +1,47 @@
+// -----------------------------------------------------
+// Server Entry Point - Todo or Not Todo 📝
+// -----------------------------------------------------
+// Bootstraps the Express server, sets middleware,
+// connects to PostgreSQL, and mounts the todo routes.
+// -----------------------------------------------------
+
+// -----------------------------------------------------
+// Imports & Config Setup
+// -----------------------------------------------------
 import express from "express";
 import bodyParser from "body-parser";
-import pg from "pg";
 import dotenv from "dotenv";
-dotenv.config(); 
 import path from "path";
-import { fileURLToPath } from "url"; 
+import { fileURLToPath } from "url";
+import todoRoutes from "./routes/todoRoutes.js";
+import "./db/db.js";
 
+dotenv.config();
+
+// -----------------------------------------------------
+// Express App Initialization
+// -----------------------------------------------------
 const app = express();
 const port = process.env.PORT || 3000;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const db = new pg.Client({
-  user: process.env.DB_USER,       
-  host: process.env.DB_HOST,       
-  database: process.env.DB_NAME,   
-  password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT,       
-  // Enable SSL in production for secure connections, disable in local dev
-  ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,                         // Disable SSL for local dev
-});
-db.connect();
-
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static("public"));
+// -----------------------------------------------------
+// View + Middleware
+// -----------------------------------------------------
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "views")); 
+app.set("views", path.join(__dirname, "views"));
+app.use(express.static("public"));
+app.use(bodyParser.urlencoded({ extended: true }));
 
-// fallback items array incase DB is not connected
-let items = [
-  { id: 1, title: "Buy milk" },
-  { id: 2, title: "Finish homework" },
-];
+// -----------------------------------------------------
+// Delegate route handling to router
+// -----------------------------------------------------
+app.use("/", todoRoutes);
 
-app.get("/", async (req, res) => {
-  try {
-    const result = await db.query("SELECT * FROM items ORDER BY id ASC");
-    items = result.rows;
-
-    res.render("index.ejs", {
-      listTitle: "Today",
-      listItems: items,
-    });
-  } catch (err) {
-    console.log(err);
-  }
-});
-
-app.post("/add", async (req, res) => {
-  const item = req.body.newItem;
-  // items.push({title: item});
-  try {
-    await db.query("INSERT INTO items (title) VALUES ($1)", [item]);
-    res.redirect("/");
-  } catch (err) {
-    console.log(err);
-  }
-});
-
-app.post("/edit", async (req, res) => {
-  const item = req.body.updatedItemTitle;
-  const id = req.body.updatedItemId;
-
-  try {
-    await db.query("UPDATE items SET title = ($1) WHERE id = $2", [item, id]);
-    res.redirect("/");
-  } catch (err) {
-    console.log(err);
-  }
-});
-
-app.post("/delete", async (req, res) => {
-  const id = req.body.deleteItemId;
-  try {
-    await db.query("DELETE FROM items WHERE id = $1", [id]);
-    res.redirect("/");
-  } catch (err) {
-    console.log(err);
-  }
-});
-
+// -----------------------------------------------------
+// Server Start
+// -----------------------------------------------------
 app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+  console.log(`✅ Server running on http://localhost:${port}`);
 });
