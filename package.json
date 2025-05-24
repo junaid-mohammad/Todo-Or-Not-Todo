@@ -8,7 +8,7 @@
     "node": ">= 14.0.0",
     "npm": ">= 6.0.0"
   },
-  "homepage": "https://your-app-name.azurewebsites.net/",
+  "homepage": "https://todo-or-not-todo-b0hqddhng9cqanaq.canadacentral-01.azurewebsites.net/",
   "repository": {
     "type": "git",
     "url": "https://github.com/junaid-mohammad/Todo-Or-Not-Todo.git"
