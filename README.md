@@ -1,14 +1,23 @@
-# Todo Or Not Todo ✅
+# Todo Or Not Todo 📝
 
-_“That is the procrastination.”_
+_That is the procrastination._
 
-[![Deployed via GitHub Actions](https://img.shields.io/badge/Deployed%20via-GitHub%20Actions-blue?logo=github)](https://github.com/junaid-mohammad/Todo-or-Not-Todo)
+[![Deployed via GitHub Actions](https://img.shields.io/badge/Deployed%20via-GitHub%20Actions-blue?logo=github)](https://github.com/junaid-mohammad/Todo-Or-Not-Todo)
 [![Azure App Service](https://img.shields.io/badge/Hosted%20on-Azure%20App%20Service-brightgreen)](https://todo-or-not-todo-b0hqddhng9cqanaq.canadacentral-01.azurewebsites.net/)
 [![Azure DevOps](https://img.shields.io/badge/Tracked%20in-Azure%20DevOps-blue)](https://dev.azure.com/Junaid-Arif/Todo%20Or%20Not%20Todo)
 
 This repository contains the source code for **Todo Or Not Todo**, a full-stack todo list app rebuilt from a personal project I first created three years ago. The original version, hosted on **Render**, had no persistence — tasks vanished on refresh. But now, with a solid grasp of **Relational Databases**, **PostgreSQL**, and modern backend practices, I’ve transformed it into a fully functional CRUD application.
 
 The app now features persistent data storage, clean modular architecture, and cloud hosting via **Azure App Service** with a **PostgreSQL Flexible Server** backend. While keeping the minimalist UI and structure familiar, I’ve added scalable backend logic, real-time task updates, and production-level deployment with CI/CD.
+
+---
+
+## 🗺️ Live Application
+
+👉 **[Todo Or Not Todo App](https://todo-or-not-todo-b0hqddhng9cqanaq.canadacentral-01.azurewebsites.net/)**  
+👉 **[GitHub Repo](https://github.com/junaid-mohammad/Todo-Or-Not-Todo)**  
+👉 **[Azure DevOps](https://dev.azure.com/Junaid-Arif/Todo%20Or%20Not%20Todo)**  
+👉 **[Old Version on Render](https://todolist-junaid.onrender.com)**
 
 ---
 
@@ -118,7 +127,7 @@ The `items` table was exported from my local PostgreSQL instance using `pg_dump`
 This repository is also configured with **Azure DevOps** as a secondary Git remote:
 
 ```bash
-git remote add azure https://Junaid-Arif@dev.azure.com/Junaid-Arif/Todo%20or%20Not%20Todo/_git/Todo%20or%20Not%20Todo
+git remote add azure https://Junaid-Arif@dev.azure.com/Junaid-Arif/Todo%20Or%20Not%20Todo/_git/Todo%20Or%20Not%20Todo
 git push azure main
 ```
 
